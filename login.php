@@ -38,7 +38,14 @@ class User
                 ':password' => $password,
             ])) {
             throw new Exception(implode(' ', $statement->errorInfo()));
+	}
+	if (false === $statement->execute([
+                ':username' => $username,
+                ':password' => $password,
+            ])) {
+            throw new Exception(implode(' ', $statement->errorInfo()));
         }
+
     }
 
     public function exists($username, $password)
